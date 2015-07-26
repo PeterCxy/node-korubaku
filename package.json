@@ -1,0 +1,25 @@
+{
+	"name": "korubaku",
+	"version": "1.0.0",
+	"author": "PeterCxy",
+	"description": "Watch out for the Callback Hell!",
+	"license": "GPL-3.0",
+	"homepage": "https://github.com/PeterCxy/node-korubaku",
+	"keywords": [
+		"callback",
+		"hell",
+		"yield",
+		"async"
+	],
+	"devDependencies": {
+		"coffee-script": ">=1.9.0"
+	},
+	"respository": {
+		"type": "git",
+		"url": "https://github.com/PeterCxy/node-korubaku.git"
+	},
+	"scripts": {
+		"prepublish": "cake build"
+	},
+	"main": "./index"
+}
