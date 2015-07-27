@@ -25,5 +25,27 @@ A generator function passed to `korubaku` function will be executed and a callba
 On calling the generated callback, it should resume the generator function, pass back the final result to where it was `yield`ed.
 
 By default, `ko` has a method `default`, which generates the callback for most cases. It accepts two arguments, and the first one should be an `Error`. If the `Error` is not null, throw it. If null, resume the generator function and pass the second argument as a result.
-Callbacks can be extended with `registerCallback name, function`. The callback function should accept all callback parameters and return the final result or throw the error. Once registered, a new method named the same as the callback's name will be created in the object called `ko` above.
+Callbacks can be extended with `registerCallback name, function`. The callback function should accept all callback parameters and return the final result or throw the error. Once registered, a new method named the same as the callback's name will be created in the object called `ko` above which can be used to generate node-style callbacks.
+
+More examples
+---
+##### request
+```coffeescript
+request = require "request"
+{korubaku} = require "korubaku"
+
+korubaku (ko) ->
+	res = yield request.get 'https://google.com', ko.default()
+	console.log "response #{res.statusCode}"
+```
+
+##### child_process
+```coffeescript
+{exec} = require 'child_process'
+{korubaku} = require 'korubaku'
+
+korubaku (ko) ->
+	stdout = yield exec 'echo "Tesuto sukuriputo"', ko.default()
+	console.log stdout
+```
 
