@@ -24,8 +24,13 @@ exports.korubaku = (func) ->
 exports.registerCallback = registerCallback = (name, func) ->
 	Korubaku.prototype[name] = makeCallbackStub func
 
+# The default callback model
 registerCallback 'default', (args) ->
 	if args[0]
 		throw args[0]
 	else
 		args[1]
+
+# Or, return the argument list directly
+registerCallback 'raw', (args) ->
+	args
